@@ -107,40 +107,55 @@ for(element in names(game_score)){
 ## 100")
 ## Hint: use 'paste()` or `str_c`
 
-
+employees <- paste("Employee", 100)
 
 ## Create a random vector of their 2021 salaries.
 ## Hint: you may use the runif function to create uniform random numbers,
 ## e.g. 'runif(100, 60, 120)' creates 100 random numbers between 60 and 120
 
+sal_2021 <- runif(100, 60, 120)
+
 
 ## Create a random vector of 2022 salaries that are typically
-## higher than the 2014 salaires (use runif again).
+## higher than the 2021 salaires (use runif again).
 ## For instance, if you create random numbers between 65 and 130, then 2022
 ## salaries tend to be larger than 2021 salaries.
 
+sal_2022 <- runif(100, 80, 140)
 
 ## Create a data.frame 'salaries' by combining the vectors you just made
 
+salaries <- data.frame(sal_2021, sal_2022)
 
 ## Create a column 'raise' that stores the size of the
 ## raise between 2021 and 2022
 
+salaries$raise <- salaries$sal_2022 - salaries$sal_2021
+salaries
 
 ## Retrieve values from your data frame to answer the following questions:
 ##
-## What was the 2015 salary of employee 57
+## What was the 2022 salary of employee 57
 
+emp57_2022 <- salaries$sal_2022[57]
+cat("The 2022 salary of employee 57 is:", emp57_2022, "\n")
 
 ## Now round the answer down to two digits after comma
 ## check out 'round()' function
 
+emp57_2022_round <- round(emp57_2022, 2)
+emp57_2022_round
 
 ## How many employees got a raise?
 
+got_raise <- sum(salaries$raise > 0)
+cat(got_raise, "employees got a raise.\n")
 
 ## What was the value of the highest raise?
 ## Round the number to two digits!
+highest_raise <- max(salaries$raise)
+highest_raise_round <- round(highest_raise, 2)
+cat("The value of the highest raise is", highest_raise_round, "\n")
 
 
 ## What was the name of the employee who recieved the highest raise?
