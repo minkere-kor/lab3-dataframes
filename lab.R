@@ -107,7 +107,7 @@ for(element in names(game_score)){
 ## 100")
 ## Hint: use 'paste()` or `str_c`
 
-employees <- paste("Employee", 100)
+employee <- paste("Employee", 1:100)
 
 ## Create a random vector of their 2021 salaries.
 ## Hint: you may use the runif function to create uniform random numbers,
@@ -125,7 +125,7 @@ sal_2022 <- runif(100, 80, 140)
 
 ## Create a data.frame 'salaries' by combining the vectors you just made
 
-salaries <- data.frame(sal_2021, sal_2022)
+salaries <- data.frame(employee, sal_2021, sal_2022)
 
 ## Create a column 'raise' that stores the size of the
 ## raise between 2021 and 2022
@@ -153,17 +153,29 @@ cat(got_raise, "employees got a raise.\n")
 
 ## What was the value of the highest raise?
 ## Round the number to two digits!
+
 highest_raise <- max(salaries$raise)
 highest_raise_round <- round(highest_raise, 2)
 cat("The value of the highest raise is", highest_raise_round, "\n")
 
 
-## What was the name of the employee who recieved the highest raise?
+## What was the name of the employee who received the highest raise?
 
+highest_emp <- salaries[salaries$raise == highest_raise, ]$employee
+cat("The name of the employee with the highest raise is", highest_emp, "\n")
 
 ## What was the average salary increase?
 ## Round the number!
 
+avg_sal_increase <- round(sum(salaries$raise) / length(salaries$raise), 2)
+cat("The average salary increase was", avg_sal_increase, "\n")
 
 ## For people who did not get a raise, how much money did they lose?
 ## Round the number!
+
+money_lost <- salaries[salaries$raise < 0, ]
+money_lost_emp <- money_lost$employee
+money_lost_amount <- round(money_lost$raise, 2)
+
+money_lost_list <- paste(money_lost_emp, "lost", abs(money_lost_amount))
+money_lost_list
